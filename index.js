@@ -5,6 +5,6 @@ require('dotenv').config()
 
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => { res.json({message: 'It works!'}); })
+require('./routes')(app);
 
-app.listen(port, () => { console.log(`Listening on ${port}`); })
+app.listen(port, () => { console.log(`Listening on ${port}`); });
