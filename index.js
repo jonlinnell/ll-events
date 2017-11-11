@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const express = require('express');
 
@@ -11,6 +12,5 @@ require('./routes')(app);
 
 models.sequelize.sync().then(() => {
   console.log('Database connection established.');
-  // eslint-disable-next-line no-console
   app.listen(port, () => { console.log(`Listening on ${port}`); });
 });
