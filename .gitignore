@@ -56,3 +56,7 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Test database
+config/db.json
+.db.dev.sqlite
