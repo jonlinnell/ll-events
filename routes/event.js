@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 const models = require('../models')
-const createEventSchema = require('../schemas/createEvent')
+const eventCreateSchema = require('../schemas/eventCreate')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -12,16 +12,14 @@ module.exports = (app) => {
   })
 
   app.post('/', (req, res) => {
-    Joi.validate(req.body, createEventSchema, (error, value) => {
+    Joi.validate(req.body, eventCreateSchema, (error) => {
       if (error !== null) {
         res.sendStatus(400)
-      }
-      else
-      {
+      } else {
         models.Event.create(req.body)
-        .then(event => {
-          res.json(event)
-        })
+          .then((event) => {
+            res.json(event)
+          })
       }
     })
   })
