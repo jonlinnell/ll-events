@@ -1,3 +1,3 @@
-module.exports = function(app) {
-  app.get('/', (req, res) => { res.json({message: 'It works!'}); })
-}
+module.exports = (app) => {
+  app.get('/', (req, res) => { res.json({ message: 'It works!' }); });
+};

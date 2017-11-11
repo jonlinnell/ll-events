@@ -1,0 +1,9 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+      "import/no-unresolved": false,
+      "import/no-dynamic-require": false,
+      "global-require": 0,
+      "semi": 1
+    }
+}
