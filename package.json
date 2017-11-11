@@ -1,13 +1,13 @@
 {
   "name": "ll-events",
   "version": "1.0.0",
-  "description": "",
+  "description": "Event information app for LL",
   "main": "index.js",
   "scripts": {
     "start": "/usr/local/bin/nodemon index.js",
     "lint": "./node_modules/.bin/eslint ."
   },
-  "author": "",
+  "author": "Jon Linnell",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^4.0.0",
