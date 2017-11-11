@@ -58,5 +58,5 @@ typings/
 .env
 
 # Test database
-config/db.json
+config/db.js
 .db.dev.sqlite

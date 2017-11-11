@@ -4,6 +4,7 @@
       "import/no-unresolved": false,
       "import/no-dynamic-require": false,
       "global-require": 0,
-      "semi": 1
+      "semi": 1,
+      "comma-dangle": 0
     }
 }
