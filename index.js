@@ -16,7 +16,7 @@ app.use(morgan('combined'))
 require('./routes')(app)
 
 app.get('/status', (req, res) => {
-  res.sendStatus(200);
+  res.sendStatus(200)
 })
 
 models.sequelize.sync().then(() => {

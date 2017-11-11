@@ -5,6 +5,7 @@
       "import/no-dynamic-require": false,
       "global-require": 0,
       "comma-dangle": 0,
-      "semi": 0
+      "semi": [2, "never"],
+      "no-unexpected-multiline": 2
     }
 }
