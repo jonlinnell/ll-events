@@ -53,16 +53,13 @@ module.exports = (app) => {
   })
 
   app.delete('/:id', (req, res) => {
-    Joi.validate(req.body, eventUpdateSchema, (error) => {
-      if (error !== null) {
+    models.Event.findById(req.params.id)
+      .then((event) => {
+        event.destroy()
+        res.sendStatus(200)
+      })
+      .catch(() => {
         res.sendStatus(400)
-      } else {
-        models.Event.findById(req.params.id)
-          .then((event) => {
-            event.destroy()
-            res.sendStatus(200)
-          })
-      }
-    })
+      })
   })
 }
