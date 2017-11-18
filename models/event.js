@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     onCampus: DataTypes.INTEGER,
     dateStart: DataTypes.DATE,
     dateEnd: DataTypes.DATE,
-    url: DataTypes.STRING
+    url: DataTypes.STRING,
+    file: DataTypes.STRING
   })
 
   return Event

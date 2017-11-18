@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 require('dotenv').config()
-const express = require('express')
-const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const express = require('express')
+const fileupload = require('express-fileupload')
+const morgan = require('morgan')
 
 const models = require('./models')
 
@@ -12,6 +13,7 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('combined'))
+app.use(fileupload())
 
 require('./routes')(app)
 

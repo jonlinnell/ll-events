@@ -10,5 +10,6 @@ module.exports = Joi.object().keys({
   onCampus: Joi.number().integer(),
   dateStart: Joi.date().required(),
   dateEnd: Joi.date().required(),
+  file: Joi.string().guid(),
   url: Joi.string()
 })

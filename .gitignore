@@ -60,3 +60,6 @@ typings/
 # Test database
 config/db.js
 .db.dev.sqlite
+
+# Files
+media/
