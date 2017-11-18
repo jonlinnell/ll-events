@@ -42,4 +42,16 @@ module.exports = (app) => {
       res.sendStatus(404)
     }
   })
+
+  app.delete('/media/:img', (req, res) => {
+    const requestedFile = `${mediaDir}/${req.params.img}`
+
+    fs.unlink(requestedFile, (err) => {
+      if (err) {
+        return res.sendStatus(404)
+      }
+
+      res.send(200)
+    })
+  })
 }
