@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     dateStart: DataTypes.DATE,
     dateEnd: DataTypes.DATE,
     url: DataTypes.STRING,
-    file: DataTypes.STRING
+    image: DataTypes.STRING
   })
 
   return Event
