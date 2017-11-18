@@ -1,8 +1,12 @@
+const fs = require('fs')
 const Joi = require('joi')
+const path = require('path')
 
 const models = require('../models')
 const eventCreateSchema = require('../schemas/eventCreate')
 const eventUpdateSchema = require('../schemas/eventUpdate')
+
+const mediaDir = process.env.MEDIA_DIR
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -56,10 +60,22 @@ module.exports = (app) => {
     models.Event.findById(req.params.id)
       .then((event) => {
         event.destroy()
-        res.sendStatus(200)
+
+        if (event.image) {
+          const imagePath = path.join(__dirname, '..', mediaDir, event.image)
+          if (fs.existsSync(imagePath)) {
+            fs.unlink(imagePath, (err) => {
+              if (err) {
+                // Log the error somehow?
+              }
+            })
+          }
+        }
+
+        return res.sendStatus(200)
       })
-      .catch(() => {
-        res.sendStatus(400)
+      .catch((err) => {
+        res.status(400).send(err)
       })
   })
 }
