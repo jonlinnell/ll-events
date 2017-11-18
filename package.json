@@ -2,9 +2,9 @@
   "name": "ll-events",
   "version": "1.0.0",
   "description": "Event information app for LL",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "/usr/local/bin/nodemon index.js",
+    "start": "/usr/local/bin/nodemon",
     "test": "./node_modules/.bin/eslint .",
     "precommit": "yarn test"
   },
