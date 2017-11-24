@@ -5,6 +5,8 @@ const express = require('express')
 const fileupload = require('express-fileupload')
 const morgan = require('morgan')
 
+const verifyToken = require('./lib/verifyToken')
+
 const models = require('./models')
 
 const app = express()
@@ -17,8 +19,8 @@ app.use(fileupload())
 
 require('./routes')(app)
 
-app.get('/status', (req, res) => {
-  res.sendStatus(200)
+app.get('/status', verifyToken, (req, res) => {
+  res.status(200).send('Hello there!')
 })
 
 models.sequelize.sync().then(() => {

@@ -2,21 +2,25 @@ const fs = require('fs')
 const Joi = require('joi')
 const path = require('path')
 
+const verifyToken = require('../lib/verifyToken')
+
 const models = require('../models')
 const eventCreateSchema = require('../schemas/eventCreate')
 const eventUpdateSchema = require('../schemas/eventUpdate')
 
 const mediaDir = process.env.MEDIA_DIR
 
+const endpoint = '/events'
+
 module.exports = (app) => {
-  app.get('/', (req, res) => {
+  app.get(endpoint, (req, res) => {
     models.Event.findAll()
       .then((events) => {
         res.json(events)
       })
   })
 
-  app.post('/', (req, res) => {
+  app.post(endpoint, verifyToken, (req, res) => {
     Joi.validate(req.body, eventCreateSchema, (error) => {
       if (error !== null) {
         res.sendStatus(400)
@@ -29,14 +33,14 @@ module.exports = (app) => {
     })
   })
 
-  app.get('/:id', (req, res) => {
+  app.get(`${endpoint}/:id`, (req, res) => {
     models.Event.findById(req.params.id)
       .then((event) => {
         res.json(event)
       })
   })
 
-  app.put('/:id', (req, res) => {
+  app.put(`${endpoint}/:id`, verifyToken, (req, res) => {
     Joi.validate(req.body, eventUpdateSchema, (error) => {
       if (error !== null) {
         res.sendStatus(400)
@@ -56,7 +60,7 @@ module.exports = (app) => {
     })
   })
 
-  app.delete('/:id', (req, res) => {
+  app.delete(`${endpoint}/:id`, verifyToken, (req, res) => {
     models.Event.findById(req.params.id)
       .then((event) => {
         event.destroy()
@@ -74,8 +78,6 @@ module.exports = (app) => {
 
         return res.sendStatus(200)
       })
-      .catch((err) => {
-        res.status(400).send(err)
-      })
+      .catch(err => res.status(400).send(err))
   })
 }

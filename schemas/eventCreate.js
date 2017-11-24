@@ -9,6 +9,6 @@ module.exports = Joi.object().keys({
   location: Joi.string().required(),
   onCampus: Joi.number().integer(),
   dateStart: Joi.date().required(),
-  dateEnd: Joi.date().required(),
+  dateEnd: Joi.date(),
   url: Joi.string()
 })

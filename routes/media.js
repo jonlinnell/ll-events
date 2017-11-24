@@ -4,6 +4,8 @@ const fs = require('fs')
 const path = require('path')
 const uuidv4 = require('uuid/v4')
 
+const verifyToken = require('../lib/verifyToken')
+
 const mediaDir = path.join(__dirname, '..', process.env.MEDIA_DIR)
 
 const filetypes = {
@@ -12,7 +14,7 @@ const filetypes = {
 }
 
 module.exports = (app) => {
-  app.post('/media/upload', (req, res) => {
+  app.post('/media/upload', verifyToken, (req, res) => {
     if (!req.files) {
       return res.status(400).send('No file uploaded.')
     }
@@ -43,7 +45,7 @@ module.exports = (app) => {
     }
   })
 
-  app.delete('/media/:img', (req, res) => {
+  app.delete('/media/:img', verifyToken, (req, res) => {
     const requestedFile = `${mediaDir}/${req.params.img}`
 
     fs.unlink(requestedFile, (err) => {
