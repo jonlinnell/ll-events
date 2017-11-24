@@ -8,7 +8,7 @@ const models = require('../models')
 const userCreateSchema = require('../schemas/userCreate')
 
 module.exports = (app) => {
-  app.post('/auth/register', (req, res) => {
+  app.post('/auth/register', verifyToken, (req, res) => {
     Joi.validate(req.body, userCreateSchema, (error) => {
       if (error !== null) {
         res.sendStatus(400)
