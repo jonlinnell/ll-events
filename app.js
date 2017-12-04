@@ -15,7 +15,9 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('combined'))
-app.use(fileupload())
+app.use(fileupload({
+  limits: { fileSize: 5 * 1024 * 1024 }
+}))
 
 require('./routes')(app)
 
